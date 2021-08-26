@@ -1,23 +1,68 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/Header";
+import Numbers from "./components/Numbers";
+import AddNumber from "./components/AddNumber";
+import { useState } from "react";
 
 function App() {
+  const [showAddNumbers, setShowAddNumbers] = useState(false);
+  const [numbers, setNumbers] = useState([
+    {
+      id: 1,
+      name: "Nathan Mathew",
+      pNumber: "(123) 123 1234",
+      favorite: true,
+    },
+    {
+      id: 2,
+      name: "Aiden Mathew",
+      pNumber: "(321) 321 4321",
+      favorite: false,
+    },
+    {
+      id: 3,
+      name: "Mom",
+      pNumber: "(111) 222 3333",
+      favorite: true,
+    },
+  ]);
+
+  // Add Number
+  const addNumber = (number) => {
+    const id = Math.floor(Math.random() * 10000) + 1;
+    const newNumber = { id, ...number };
+    setNumbers([...numbers, newNumber]);
+  };
+
+  // Delete Number
+  const deleteNumber = (id) => {
+    setNumbers(numbers.filter((number) => number.id !== id));
+  };
+
+  // Toggle Favorite
+  const toggleFavorite = (id) => {
+    setNumbers(
+      numbers.map((number) =>
+        number.id === id ? { ...number, favorite: !number.favorite } : number
+      )
+    );
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <Header
+        onAdd={() => setShowAddNumbers(!showAddNumbers)}
+        showAdd={showAddNumbers}
+      />
+      {showAddNumbers && <AddNumber onAdd={addNumber} />}
+      {numbers.length > 0 ? (
+        <Numbers
+          numbers={numbers}
+          onDelete={deleteNumber}
+          onToggle={toggleFavorite}
+        />
+      ) : (
+        "Add a number by clicking the Add button!"
+      )}
     </div>
   );
 }
