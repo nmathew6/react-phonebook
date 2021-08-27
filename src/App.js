@@ -1,10 +1,12 @@
 import Header from "./components/Header";
 import Numbers from "./components/Numbers";
 import AddNumber from "./components/AddNumber";
+import SearchNumber from "./components/SearchNumber";
 import { useState } from "react";
 
 function App() {
   const [showAddNumbers, setShowAddNumbers] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
   const [numbers, setNumbers] = useState([
     {
       id: 1,
@@ -25,6 +27,13 @@ function App() {
       favorite: true,
     },
   ]);
+
+  // Search Number
+  const searchNumber = (name) => {
+    numbers.forEach((num) => {
+      num.name === name.name ? alert(num.pNumber) : console.log("not found");
+    });
+  };
 
   // Add Number
   const addNumber = (number) => {
@@ -52,7 +61,10 @@ function App() {
       <Header
         onAdd={() => setShowAddNumbers(!showAddNumbers)}
         showAdd={showAddNumbers}
+        onSearch={() => setShowSearch(!showSearch)}
+        showSearch={showSearch}
       />
+      {showSearch && <SearchNumber onSearch={searchNumber} />}
       {showAddNumbers && <AddNumber onAdd={addNumber} />}
       {numbers.length > 0 ? (
         <Numbers
