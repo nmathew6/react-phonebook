@@ -1,23 +1,31 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).\
+Tutorial/design/css used from [React JS Crash Course 2021](https://www.youtube.com/watch?v=w7ejDZ8SWv8) by Traversy Media. 
+## Steps
 
-## Available Scripts
+### 1. Use Create React App to generate template react app
 
-In the project directory, you can run:
+```
+npx create-react-app react-phonebook
+```
 
-### `npm start`
+Creates template react app and development envrionment.\
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Run the template app by using 
+```
+npm start
+```
+and view on http://localhost:3000/
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 2. Create necesary components for the phonebook
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Technologies used in components include:
+-Form submission
+-State
+-Styling
+-Props
+-
 
 ### `npm run build`
 
