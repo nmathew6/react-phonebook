@@ -2,31 +2,39 @@ import Header from "./components/Header";
 import Numbers from "./components/Numbers";
 import AddNumber from "./components/AddNumber";
 import SearchNumber from "./components/SearchNumber";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
   const [showAddNumbers, setShowAddNumbers] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
-  const [numbers, setNumbers] = useState([
-    {
-      id: 1,
-      name: "Nathan Mathew",
-      pNumber: "(123) 123 1234",
-      favorite: true,
-    },
-    {
-      id: 2,
-      name: "Aiden Mathew",
-      pNumber: "(321) 321 4321",
-      favorite: false,
-    },
-    {
-      id: 3,
-      name: "Mom",
-      pNumber: "(111) 222 3333",
-      favorite: true,
-    },
-  ]);
+  const [numbers, setNumbers] = useState([]);
+
+  useEffect(() => {
+    const getNumbers = async () => {
+      const numbersFromServer = await fetchNumbers();
+      setNumbers(numbersFromServer);
+    };
+
+    getNumbers();
+  }, []);
+
+  // Fetch Numbers
+  const fetchNumbers = async () => {
+    //const res = await fetch("http://localhost:5000/numbers");
+    const res = await fetch("http://localhost:8080/demo/all");
+    console.log("calling other service");
+    const data = await res.json();
+
+    return data;
+  };
+
+  // Fetch Number
+  const fetchNumber = async (id) => {
+    const res = await fetch(`http://localhost:8080/demo/${id}`);
+    const data = await res.json();
+
+    return data;
+  };
 
   // Search Number
   const searchNumber = (name) => {
@@ -36,22 +44,50 @@ function App() {
   };
 
   // Add Number
-  const addNumber = (number) => {
-    const id = Math.floor(Math.random() * 10000) + 1;
-    const newNumber = { id, ...number };
-    setNumbers([...numbers, newNumber]);
+  const addNumber = async (number) => {
+    // const res = await fetch("http://localhost:5000/numbers", {
+    console.log(number);
+    const res = await fetch("http://localhost:8080/demo/add", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(number),
+    });
+
+    const data = await res.json();
+
+    setNumbers([...numbers, data]);
   };
 
   // Delete Number
-  const deleteNumber = (id) => {
+  const deleteNumber = async (id) => {
+    // await fetch(`http://localhost:5000/numbers/${id}`, {
+    await fetch(`http://localhost:8080/demo/${id}`, {
+      method: "DELETE",
+    });
+
     setNumbers(numbers.filter((number) => number.id !== id));
   };
 
   // Toggle Favorite
-  const toggleFavorite = (id) => {
+  const toggleFavorite = async (id) => {
+    const numToToggle = await fetchNumber(id);
+    const updNum = { ...numToToggle, favorite: !numToToggle.favorite };
+
+    const res = await fetch(`http://localhost:5000/numbers/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(updNum),
+    });
+
+    const data = await res.json();
+
     setNumbers(
       numbers.map((number) =>
-        number.id === id ? { ...number, favorite: !number.favorite } : number
+        number.id === id ? { ...number, favorite: data.favorite } : number
       )
     );
   };
