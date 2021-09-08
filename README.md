@@ -10,7 +10,7 @@ Tutorial/design/css used from [React JS Crash Course 2021](https://www.youtube.c
 npx create-react-app react-phonebook
 ```
 
-Creates template react app and development envrionment.\
+Create react app generates a generic react app which you can modify to create a personalized app. It generates/imports all the required files and resources needed to run the app, setting up a development environment.\
 
 Run the template app by using 
 ```
@@ -20,59 +20,25 @@ and view on http://localhost:3000/
 
 ### 2. Create necesary components for the phonebook
 
+A react app is comprised of several components that each represent a part of the application. In this phonebook application, seperate components represent the indvidual numbers, the add and search features, the buttons, and more. 
+
 Technologies used in components include:
--Form submission
--State
--Styling
--Props
--
+* Form submission
+* State
+* Styling
+* Props
 
-### `npm run build`
+![Note Sep 7, 2022](https://user-images.githubusercontent.com/41180186/132432238-904444f3-1fa5-4936-be11-a90bcb65e324.jpg)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 3. Run and test
+Start the development server on localhost:3000 by running `npm start`.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Before adding a backend, hardcoded values can be added as a state in App.js which can be used to test the add, remove, and favorite features. The changes made will dissapear after refreshing the page. 
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
